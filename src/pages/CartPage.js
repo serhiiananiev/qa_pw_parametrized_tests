@@ -54,6 +54,10 @@ export class CartPage {
     this.totalCheckout = page.getByTestId('checkout');
   }
 
+  async clickOnremoveCoffeeButton(name) {
+    await this.page.getByLabel(`Remove all ${name}`).click();
+  }
+
   coffeeListItemLocator(name) {
     return this.cartListLocator.getByRole('listitem').filter({ hasText: name });
   }
@@ -112,6 +116,10 @@ export class CartPage {
 
   async assertEspressoItemIsHidden() {
     await expect(this.espressoItem).toBeHidden();
+  }
+
+  async assrtCoffeeItemIsHidden(price) {
+    await expect(this.coffeeListItemLocator(price)).toBeHidden();
   }
 
   async assertCoffeeNameContainsCorrectText(name) {

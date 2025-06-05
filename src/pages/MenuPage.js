@@ -1,4 +1,5 @@
 const { expect } = require('@playwright/test');
+import { priceFormatStr } from '../common/priceFormatters';
 
 export class MenuPage {
   constructor(page) {
@@ -19,6 +20,15 @@ export class MenuPage {
     );
     this.yesPromoButton = page.getByRole('button', { name: 'Yes, of course!' });
     this.noPromoButton = page.getByRole('button', { name: "Nah, I'll skip." });
+    this.locatorToCheckCoffeeCost = page.locator('h4');
+  }
+
+  async checkCoffeeCost(coffeeName, expectedCost) {
+    const formattedCost = priceFormatStr(expectedCost);
+    const coffeeCup = this.locatorToCheckCoffeeCost
+      .getByText(coffeeName)
+      .filter({ hasText: formattedCost });
+    await expect(coffeeCup).toContainText(formattedCost);
   }
 
   coffeeCupLocator(coffeeName) {
