@@ -118,8 +118,8 @@ export class CartPage {
     await expect(this.espressoItem).toBeHidden();
   }
 
-  async assrtCoffeeItemIsHidden(price) {
-    await expect(this.coffeeListItemLocator(price)).toBeHidden();
+  async assertCoffeeItemIsHidden(priceName) {
+    await expect(this.coffeeListItemLocator(priceName)).toBeHidden();
   }
 
   async assertCoffeeNameContainsCorrectText(name) {

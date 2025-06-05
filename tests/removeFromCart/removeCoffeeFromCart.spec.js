@@ -21,7 +21,7 @@ testParameters.forEach(({ coffee, price }) => {
 
     await cartPage.clickOnremoveCoffeeButton(coffee);
 
-    const formattedCost = priceFormatStr(price);
-    await cartPage.assrtCoffeeItemIsHidden(formattedCost);
+    const formattedCostName = priceFormatStr(price);
+    await cartPage.assrtCoffeeItemIsHidden(formattedCostName);
   });
 });
